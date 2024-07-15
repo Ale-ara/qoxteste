@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ordem Militar - Aplicadores</title>
+    <link rel="icon" href="https://www.habbo.com.br/habbo-imaging/badge/b09134s43114s41194f74f3131b8a5c9311558ee0f561db7e0.gif">
+    <link rel="stylesheet" href="css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        html {
+            height: 100%;
+            background: linear-gradient(90deg, #265646, #437362);
+            background-size: 200% 200%;
+            background-attachment: fixed;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            overflow-y: auto;
+            background: transparent;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 80px; /* Reduzi o margin-top para centralizar melhor */
+            margin-bottom: 40px; /* Adicionei um margin-bottom para espaço abaixo do container */
+            margin-left: 10px; /* Ajuste de margem para mover o container um pouco mais para a esquerda */
+            position: relative; /* Para ajustes de posição */
+            z-index: 1; /* Garante que o container esteja acima da imagem inicial */
+            transition: background-color 0.3s;
+            
+        }
+
+        .tittle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .details_span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+select,
+input[type="number"] {
+    width: 90%; /* Define a largura como 100% do espaço disponível */
+    height: 52px;
+    background-color: #E7E7E7;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #282828;
+    transition: border-color 0.3s ease;
+}
+        .button {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            background-color: white;
+            color: #265646;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 1.15rem;
+            height: 90px;
+            z-index: 2;
+            position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .button .icon {
+            margin-right: 8px;
+            height: 1.15rem;
+            width: auto;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.01);
+        }
+
+        .card {
+            display: none; /* Inicialmente escondido */
+        }
+
+        .card.active {
+            display: block; /* Mostra apenas quando ativo */
+        }
+
+       
+        .form-container .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-container .row input,
+        .form-container .row select,
+        .form-container .row textarea {
+            width: calc(50% - 5px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #265646;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #429479;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #429479;
+        }
+
+
+        .buttons {
+            display: flex;
+            justify-content: space-around; /* Para espaçamento igual entre os botões */
+            margin-bottom: 20px; /* Adiciona um espaço entre os botões e os formulários */
+        }
+
+        .initial-button {
+            flex: 1; /* Faz os botões ocuparem o mesmo espaço */
+            margin: 0 10px; /* Espaçamento entre os botões */
+        }
+
+        .initial-image {
+            display: block; /* Mostra a imagem por padrão */
+            margin: 0 auto 20px; /* Centraliza a imagem com espaço abaixo */
+            max-width: 100%;
+            position: absolute; /* Posicionamento absoluto para não interferir com o container */
+            top: 0; /* Alinha a imagem no topo */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Corrige para centralizar perfeitamente */
+            z-index: 0; /* Garante que a imagem fique abaixo do container */
+            margin-top: 100px;
+        }
+
+        .card.active + .initial-image {
+            display: none; /* Esconde a imagem quando um dos formulários estiver ativo */
+        }
+
+        input[type="submit" i] {
+width: 100%;
+    height: 68px;
+    background-color: #265646;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.input[type="submit" i] button:hover {
+    background-color: #143027;
+}
+    </style>
+</head>
+<body>
+    <img src="https://i.imgur.com/GU8oq2S.png" alt="Imagem Inicial" class="initial-image">
+    <div class="container">
+        
+        <div class="buttons">
+            <button class="button initial-button" onclick="toggleForm('postagem_testes')">
+                <img src="https://i.imgur.com/lDszu4v.png" alt="Ícone" class="icon" />
+                ENTRADA NA SUBCOMPANHIA
+            </button>
+            <button class="button initial-button" onclick="toggleForm('retificação_erros')">
+                <img src="https://i.imgur.com/wUuGzSd.png" alt="Ícone" class="icon" />
+                PEDIDO DE RETIFICAÇÃO DE ERROS
+            </button>
+        </div>
+
+        <div class="card" id="postagem_testes">
+            <div class="tittle">Entrada na Subcompanhia</div>
+            <form id="postagem_testes_forms" action="#" onsubmit="return fill_testes(event)">
+                <div class="details">
+                    <input type="text" name="horario_envio_test" id="horario_envio_test" value="-" style="display: none;">
+                    <div class="input-box">
+                        <span class="details_span">Início da Aplicação</span>
+                        <input id="inicio_aplicação" name="inicio_aplicação" class="data_hour" type="text" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Nickname do Aplicador</span>
+                        <input id="nickname_aplicador" name="nickname_aplicador" type="text" placeholder="Nickname do aplicador." required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Policiais Presentes</span>
+                        <input id="nickname_pres" name="nickname_pres" type="text" placeholder="Separe com ' / '" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Policiais Aprovados</span>
+                        <input id="nickname_aprov" name="nickname_aprov" type="text" placeholder="Separe com ' / '" required>
+                    </div>
+                    <div class="input-box" style="grid-column: span 2;">
+                        <span class="details_span">Comentários Adicionais</span>
+                        <input id="comentarios" name="comentarios" type="text" placeholder="Comentários sobre a aplicação, se necessário" required>
+                    </div>
+                    <div class="input-box" style="grid-column: span 2;">
+                        <span class="details_span">Adição em Subfórum ou Emblema</span>
+                        <select name="necessidade_novos" id="necessidade_novos" required>
+                            <option value="" disabled selected>Selecione a necessidade dos aprovados</option>
+                            <option value="1">Necessário adicionar no subfórum</option>
+                            <option value="2">Necessário adicionar no emblema</option>
+                            <option value="3">Necessário adicionar em ambos</option>
+                            <option value="4">Já adicionados em ambos</option>
+                            <option value="5">Não houveram aprovados</option>
+                        </select>
+                    </div>
+                    <div class="button" id="enviar_teste">
+                        <input type="submit" value="Enviar">
+                    </div>
+                    <div class="button" style="display: none;" id="enviar_teste_dis">
+                        <input type="submit" value="Enviando...Aguarde!" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+        <div class="card" id="retificação_erros">
+            <div class="tittle">Pedido de Retificação de Erro</div>
+            <form id="pedido_retif" action="#" onsubmit="return fill_retif(event)">
+                <div class="details">
+                    <input type="text" name="horario_envio_ret" id="horario_envio_ret" value="-" style="display: none;">
+                    <div class="input-box">
+                        <span class="details_span">Início da Aplicação</span>
+                        <input id="inicio_aplicação_ret" name="inicio_aplicação_ret" class="data_hour" type="text" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Nickname do Aplicador</span>
+                        <input id="nickname_aplicador_ret" name="nickname_aplicador_ret" type="text" placeholder="Nickname do aplicador." required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Policiais Presentes</span>
+                        <input id="nickname_pres_ret" name="nickname_pres_ret" type="text" placeholder="Use um ' / ' para separar os nicks" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details_span">Policiais Aprovados</span>
+                        <input id="nickname_aprov_ret" name="nickname_aprov_ret" type="text" placeholder="Use um ' / ' para separar os nicks" required>
+                    </div>
+                    <div class="input-box" style="grid-column: span 2;">
+                        <span class="details_span">Comentários Adicionais</span>
+                        <input id="comentarios_ret" name="comentarios_ret" type="text" placeholder="Comentários sobre a aplicação, se necessário">
+                    </div>
+                    <div class="button" id="enviar_ret">
+                        <input type="submit" value="Enviar">
+                    </div>
+                    <div class="button" style="display: none;" id="enviar_ret_dis">
+                        <input type="submit" value="Enviando...Aguarde!" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    
+<textarea style="display: none;" id="fa-generated-message"></textarea>       
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+ <script>
+        function toggleForm(formId) {
+            const forms = document.querySelectorAll('.card');
+            forms.forEach(form => {
+                if (form.id === formId) {
+                    form.classList.add('active');
+                } else {
+                    form.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+
+
+<script>
+$(document).ready(function(){
+    $('#select_options').on('change',function(){
+        $(".card").hide();
+        $("#" + $(this).val()).show();
+    }).change();
+})
+
+function fill_testes(e){
+    e.preventDefault();
+    var isValid = true;
+    if($("#necessidade_novos").val() == null){isValid = false};
+    $("#postagem_testes_forms").find("input").each(function(){
+        if($(this).val() == ""){isValid = false};
+    })
+
+    // SE VALIDAÇÃO É VERIFICADA:
+    if(isValid == true){
+        document.getElementById('enviar_teste').style.display = 'none';
+        document.getElementById('enviar_teste_dis').style.display = 'flex';
+        preencher_data('horario_envio_test');
+
+        var horario = new Date();
+        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+        var data_hoje = horario.getDate();
+            if(data_hoje<10){data_hoje = '0' + data_hoje};
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+        var mes_hoje = meses[horario.getMonth()];
+        var ano_hoje = horario.getFullYear();
+
+        if(parseInt($("#necessidade_novos").val()) == 5){$("#nickname_aprov").val('Não houveram aprovados')}else{
+            var entradas = document.getElementById('nickname_aprov').value.split('/');
+            var lista = '';
+                entradas.forEach(function(nickname){
+                    nickname = nickname.replace(' ','');
+                    lista = lista + "\n • [b]" + nickname + '[/b] - ' + data_hoje + ' ' + mes_hoje + ' ' + ano_hoje;
+                });
+            if(document.getElementById('necessidade_novos').value == 1){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum.[/color]"}
+            if(document.getElementById('necessidade_novos').value == 2){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no emblema.[/color]"}
+            if(document.getElementById('necessidade_novos').value == 3){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum e no emblema.[/color]"}
+            if(document.getElementById('necessidade_novos').value == 4){var necessidade = "[color=green][b]✓[/b] Policiais já adicionados no emblema e subfórum.[/color]"}
+            var texto = 
+                "[font=Lexend Deca][size=15][color=#263b32][b]ENTRADA DE MEMBROS[/b][/color][/size]\n" + lista + "\n\n" + necessidade + "[/font]";
+                        
+            document.getElementById('fa-generated-message').value = texto;
+        };
+
+        var form = document.getElementById("postagem_testes_forms");
+        var link_url = 'https://script.google.com/macros/s/AKfycbyNRhzBQFkmYMw_tNZlkrgrgKdYqeoXPj30X2Oo8wAlxDgsm2ZM9TdFUJdMPy-AMmvF/exec';
+
+        fetch(link_url, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Respostas enviadas!'))
+            .catch(error => alert('Resposta não enviada para a planilha. Contate um membro do ministério!'))
+
+        window.open('https://docs.google.com/spreadsheets/d/16Aeqt9ku1Pj-OuBH0fI0FP67CmCzxJty3wxeXSCQQvE/edit#gid=1943370489')
+    }
+    // SE VALIDAÇÃO NÃO É VERIFICADA:
+    else{
+        alert('Preencha todos os campos!')
+    };
+    return isValid;
+}
+
+function fill_retif(e){
+    e.preventDefault();
+    var isValid = true;
+    $("#pedido_retif").find("input").each(function(){
+        if($(this).val() == ""){isValid = false};
+    })
+
+    // SE VALIDAÇÃO É VERIFICADA:
+    if(isValid == true){
+        document.getElementById('enviar_retificação').style.display = 'none';
+        document.getElementById('enviar_retificação_dis').style.display = 'flex';
+        preencher_data('horario_envio_ret');
+        
+        var texto = 
+            "[font=Trebuchet MS][b]RETIFICAÇÃO DE ERROS DE POSTAGEM:[/b] \n\n [b]Nickname:[/b] " + document.getElementById('nickname_ret').value + "\n" +
+            "[b]Cargo:[/b] Aplicador \n" + "[b]Linha na Planilha:[/b] " + document.getElementById('linha_plan').value + "\n" +
+            "[b]Erro:[/b] " + document.getElementById('erro_retif').value + "\n" + "[b]Correção:[/b] " + document.getElementById('correção_retif').value + "[/font]"                 
+        document.getElementById('fa-generated-message').value = texto;
+    }
+    // SE VALIDAÇÃO NÃO É VERIFICADA:
+    else{
+        alert('Preencha todos os campos!')
+    };
+    return isValid;
+}
+
+function preencher_data(id){
+    var horario = new Date();
+        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+        var data_hoje = horario.getDate();
+            if(data_hoje<10){data_hoje = '0' + data_hoje};
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+        var mes_hoje = meses[horario.getMonth()];
+        var ano_hoje = horario.getFullYear();
+        var horario_hoje = horario.getHours();
+            if(horario_hoje<10){horario_hoje = '0' + horario_hoje};
+        var minutos_hoje = horario.getMinutes();
+            if(minutos_hoje<10){minutos_hoje = '0' + minutos_hoje};
+        var segundos_hoje = horario.getSeconds();
+            if(segundos_hoje<10){segundos_hoje = '0' + segundos_hoje};
+    document.getElementById(id).value = data_hoje + ' ' + mes_hoje + ' ' + ano_hoje + ' ' + horario_hoje + ':' + minutos_hoje + ':' + segundos_hoje;
+}
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://forumeiros.github.io/assets/src/form-generator/form-replace.js" type="text/javascript"></script>
+
+<script type="text/javascript">  // POSTAGEM NO FÓRUM  
+    (function ($) {
+    	'use strict';
+    	$(window).on('load', function () {
+            preencher_data('inicio_aplicação');
+    		$('form').on('submit', function (event) {
+         event.preventDefault();
+         $(this).find('button[type="submit"]').text('Postando...');
+         if($('#fa-generated-message').val() != ''){
+             if($("#select_options").val() == 'postagem_testes'){var forum_id = '37638'};
+             if($("#select_options").val() == 'retificação_erros'){var forum_id = '27051'};
+         setTimeout(function () {
+    		  	$.post('/post', {
+    			  	t: forum_id,
+    				  message: $('#fa-generated-message').val().trim(),
+    				  mode: 'reply',
+    				  tid: $('[name="tid"]:first').val(),
+    				  post: 1,
+    		  	}).done(function () {
+    				  console.log('Postado com sucesso. Você será redirecionado para o tópico...');
+                      location.href = 'http://' + location.host + '/t' + forum_id + '-?view=newest';
+    			  }).fail(function () {
+    				  alert('Houve um erro! Tente novamente!');
+    			  });
+         }, 600);
+        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/f845-om-departamento-de-aplicacao'}, 4000)};
+    		});
+    	});
+    }(jQuery));
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script> // MÁSCARA DE DATA E HORA
+$(document).ready(function(){
+    $.jMaskGlobals = {translation: {
+        'D': {pattern: /[0-3]/},
+        'H': {pattern: /[0-2]/},
+        'M': {pattern: /[0-5]/},
+        'Y': {pattern: /[0-9]/},
+        'A': {pattern: /[A-Z]/},
+        'a': {pattern: /[a-z]/}
+    }}
+    $('.data_hour').mask('DY Aaa YYYY - HY:MY', {placeholder: 'Siga o modelo: 20 Fev 2021 - 20:20'});
+});
+</script>
+
+<script> // PREENCHIMENTO COM BASE NO LINK
+$(document).ready(function () {
+    atualizarURL ()
+});
+
+function atualizarURL(){
+    const urlParams = new URLSearchParams(window.location.search).forEach(function(x,y){
+        document.getElementById(y).value = x;
+        if(y == 'select_options'){
+            document.getElementById(x).style.display = 'block';
+        }
+    });    
+}
+</script>
+<script>
+    // Função para preencher o input com o valor do parâmetro nickname_aplicador da URL
+    function preencherNicknameAplicador() {
+        // Obter o parâmetro da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const nicknameAplicador = urlParams.get('nickname_aplicador');
+
+        // Verificar se o parâmetro existe e preencher o input
+        if (nicknameAplicador) {
+            document.getElementById('nickname_aplicador_ret').value = decodeURIComponent(nicknameAplicador);
+        }
+    }
+
+    // Chamar a função para preencher o input quando a página carregar
+    window.onload = function() {
+        preencherNicknameAplicador();
+    };
+</script>
+
+</body>
