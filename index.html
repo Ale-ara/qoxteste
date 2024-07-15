@@ -18,7 +18,7 @@
             background-attachment: fixed;
             animation: gradientAnimation 15s ease infinite;
         }
-
+    
         @keyframes gradientAnimation {
             0% {
                 background-position: 0% 50%;
@@ -30,7 +30,7 @@
                 background-position: 0% 50%;
             }
         }
-
+    
         body {
             margin: 0;
             padding: 0;
@@ -42,7 +42,7 @@
             overflow-y: auto;
             background: transparent;
         }
-
+    
         .container {
             width: 100%;
             max-width: 800px;
@@ -56,9 +56,8 @@
             position: relative; /* Para ajustes de posição */
             z-index: 1; /* Garante que o container esteja acima da imagem inicial */
             transition: background-color 0.3s;
-            
         }
-
+    
         .tittle {
             font-size: 24px;
             font-weight: 700;
@@ -66,38 +65,39 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
+    
         .details {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
+    
         .input-box {
             position: relative;
         }
-
+    
         .details_span {
             display: block;
             font-size: 14px;
             margin-bottom: 5px;
             color: #333;
         }
-
+    
         input[type="text"],
-select,
-input[type="number"] {
-    width: 90%; /* Define a largura como 100% do espaço disponível */
-    height: 52px;
-    background-color: #E7E7E7;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    color: #282828;
-    transition: border-color 0.3s ease;
-}
+        select,
+        input[type="number"] {
+            width: 90%; /* Define a largura como 90% do espaço disponível */
+            height: 52px;
+            background-color: #e7e7e7;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: #282828;
+            transition: border-color 0.3s ease;
+        }
+    
         .button {
             grid-column: span 2;
             display: flex;
@@ -116,174 +116,169 @@ input[type="number"] {
             font-weight: 800;
             text-transform: uppercase;
         }
-
+    
         .button .icon {
             margin-right: 8px;
             height: 1.15rem;
             width: auto;
         }
-
+    
         .button:hover {
             background-color: #f0f0f0;
             transform: scale(1.01);
         }
-
+    
         .card {
             display: none; /* Inicialmente escondido */
         }
-
+    
         .card.active {
             display: block; /* Mostra apenas quando ativo */
         }
-
-       
+    
+    
         .form-container .row {
             display: flex;
             gap: 10px;
         }
-
+    
         .form-container .row input,
         .form-container .row select,
         .form-container .row textarea {
             width: calc(50% - 5px);
         }
-
+    
         ::-webkit-scrollbar {
             width: 12px;
         }
-
+    
         ::-webkit-scrollbar-track {
             background: #265646;
         }
-
+    
         ::-webkit-scrollbar-thumb {
             background: #429479;
             border-radius: 10px;
         }
-
+    
         ::-webkit-scrollbar-thumb:hover {
             background: #429479;
         }
-
-
+    
         .buttons {
             display: flex;
             justify-content: space-around; /* Para espaçamento igual entre os botões */
             margin-bottom: 20px; /* Adiciona um espaço entre os botões e os formulários */
         }
-
-        .initial-button {
-            flex: 1; /* Faz os botões ocuparem o mesmo espaço */
-            margin: 0 10px; /* Espaçamento entre os botões */
+    
+        .initial-image {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            margin-top: 100px; /* Padrão para a maioria das telas */
         }
-
-       .initial-image {
-    display: block;
-    margin: 0 auto 20px;
-    max-width: 100%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 0;
-    margin-top: 100px; /* Padrão para a maioria das telas */
-}
-
-.card.active + .initial-image {
-    display: none; /* Esconde a imagem quando um dos formulários estiver ativo */
-}
-
-input[type="submit"] {
-    width: 100%;
-    height: 68px;
-    background-color: #265646;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-input[type="submit"]:hover {
-    background-color: #143027;
-}
-
-/* Media queries para diferentes tamanhos de tela */
-@media screen and (min-width: 2560px) and (min-height: 1440px) {
-    .initial-image {
-        margin-top: 600px;
-    }
-    .container {
-        margin-top: 220px; /* Ajuste para o container no tamanho 2560x1440 */
-    }
-}
-
-@media screen and (min-width: 1920px) and (min-height: 1080px) {
-    .initial-image {
-        margin-top: 330px; 
-    }
-    .container {
-        margin-top: 200px; /* Ajuste para o container no tamanho 1920x1080 */
-    }
-}
-
-@media screen and (min-width: 1600px) and (max-width: 1919px) {
-    .initial-image {
-        margin-top: 200px; 
-    }
-    .container {
-        margin-top: 150px; /* Ajuste para o container no tamanho 1600x1919 */
-    }
-}
-
-@media screen and (min-width: 1366px) and (max-width: 1599px) {
-    .initial-image {
-        margin-top: 150px; 
-    }
-    .container {
-        margin-top: 120px; /* Ajuste para o container no tamanho 1366x1599 */
-    }
-}
-
-@media screen and (min-width: 1280px) and (max-width: 1365px) {
-    .initial-image {
-        margin-top: 130px; 
-    }
-    .container {
-        margin-top: 110px; /* Ajuste para o container no tamanho 1280x1365 */
-    }
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1279px) {
-    .initial-image {
-        margin-top: 120px;
-    }
-    .container {
-        margin-top: 100px; /* Ajuste para o container no tamanho 1024x1279 */
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .initial-image {
-        margin-top: 110px;
-    }
-    .container {
-        margin-top: 90px; /* Ajuste para o container no tamanho 768x1023 */
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .initial-image {
-        margin-top: 130px; /* Ajuste padrão para telas menores */
-    }
-    .container {
-        margin-top: 80px; /* Ajuste para o container em telas menores */
-    }
-}
-
+    
+        .card.active + .initial-image {
+            display: none; /* Esconde a imagem quando um dos formulários estiver ativo */
+        }
+    
+        input[type="submit"] {
+            width: 100%;
+            height: 68px;
+            background-color: #265646;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #143027;
+        }
+    
+        /* Media queries para diferentes tamanhos de tela */
+        @media screen and (min-width: 2560px) and (min-height: 1440px) {
+            .initial-image {
+                margin-top: 600px; /* Ajuste para o tamanho 2560x1440 */
+            }
+            .container {
+                margin-top: 220px; /* Ajuste para o container no tamanho 2560x1440 */
+            }
+        }
+    
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+            .initial-image {
+                margin-top: 330px; /* Ajuste para o tamanho 1920x1080 */
+            }
+            .container {
+                margin-top: 200px; /* Ajuste para o container no tamanho 1920x1080 */
+            }
+        }
+    
+        @media screen and (min-width: 1600px) and (max-width: 1919px) {
+            .initial-image {
+                margin-top: 200px; /* Ajuste para o tamanho 1600x1919 */
+            }
+            .container {
+                margin-top: 150px; /* Ajuste para o container no tamanho 1600x1919 */
+            }
+        }
+    
+        @media screen and (min-width: 1366px) and (max-width: 1599px) {
+            .initial-image {
+                margin-top: 150px; /* Ajuste para o tamanho 1366x1599 */
+            }
+            .container {
+                margin-top: 120px; /* Ajuste para o container no tamanho 1366x1599 */
+            }
+        }
+    
+        @media screen and (min-width: 1280px) and (max-width: 1365px) {
+            .initial-image {
+                margin-top: 130px; /* Ajuste para o tamanho 1280x1365 */
+            }
+            .container {
+                margin-top: 110px; /* Ajuste para o container no tamanho 1280x1365 */
+            }
+        }
+    
+        @media screen and (min-width: 1024px) and (max-width: 1279px) {
+            .initial-image {
+                margin-top: 120px; /* Ajuste para o tamanho 1024x1279 */
+            }
+            .container {
+                margin-top: 100px; /* Ajuste para o container no tamanho 1024x1279 */
+            }
+        }
+    
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            .initial-image {
+                margin-top: 110px; /* Ajuste para o tamanho 768x1023 */
+            }
+            .container {
+                margin-top: 90px; /* Ajuste para o container no tamanho 768x1023 */
+            }
+        }
+    
+        @media screen and (max-width: 767px) {
+            .initial-image {
+                margin-top: 130px; /* Ajuste padrão para telas menores */
+            }
+            .container {
+                margin-top: 80px; /* Ajuste para o container em telas menores */
+            }
+        }
     </style>
+    
+    
 </head>
 <body>
     <img src="https://i.imgur.com/GU8oq2S.png" alt="Imagem Inicial" class="initial-image">
