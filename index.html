@@ -502,22 +502,33 @@ function atualizarURL(){
 }
 </script>
 <script>
-    // Função para preencher o input com o valor do parâmetro nickname_aplicador da URL
-    function preencherNicknameAplicador() {
-        // Obter o parâmetro da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const nicknameAplicador = urlParams.get('nickname_aplicador');
+   // Função para obter parâmetros da URL por nome
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
-        // Verificar se o parâmetro existe e preencher o input
-        if (nicknameAplicador) {
-            document.getElementById('nickname_aplicador_ret').value = decodeURIComponent(nicknameAplicador);
-        }
+// Preencher campos de input com parâmetros da URL
+document.addEventListener('DOMContentLoaded', function() {
+    var nicknameAplicadorInput = document.getElementById('nickname_aplicador_ret');
+    var nicknameRetInput = document.getElementById('nickname_ret');
+
+    var nicknameAplicador = getParameterByName('nickname_aplicador');
+    var nicknameRet = getParameterByName('nickname_ret');
+
+    if (nicknameAplicador) {
+        nicknameAplicadorInput.value = nicknameAplicador;
     }
 
-    // Chamar a função para preencher o input quando a página carregar
-    window.onload = function() {
-        preencherNicknameAplicador();
-    };
+    if (nicknameRet) {
+        nicknameRetInput.value = nicknameRet;
+    }
+});
 </script>
 
 </body>
