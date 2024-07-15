@@ -178,16 +178,16 @@ input[type="number"] {
         }
 
         .initial-image {
-            display: block; /* Mostra a imagem por padrão */
-            margin: 0 auto 20px; /* Centraliza a imagem com espaço abaixo */
-            max-width: 100%;
-            position: absolute; /* Posicionamento absoluto para não interferir com o container */
-            top: 0; /* Alinha a imagem no topo */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Corrige para centralizar perfeitamente */
-            z-index: 0; /* Garante que a imagem fique abaixo do container */
-            margin-top: 100px;
-        }
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    margin-top: 100px; /* Padrão para a maioria das telas */
+}
 
         .card.active + .initial-image {
             display: none; /* Esconde a imagem quando um dos formulários estiver ativo */
@@ -210,13 +210,48 @@ width: 100%;
     background-color: #143027;
 }
 
+/* Media queries para diferentes tamanhos de tela */
 @media screen and (min-width: 1920px) and (min-height: 1080px) {
     .initial-image {
-        margin-top: 260px; /* Ajuste de margem superior específico para 1920x1080 */
+        margin-top: 260px; 
     }
 }
 
+@media screen and (min-width: 1600px) and (max-width: 1919px) {
+    .initial-image {
+        margin-top: 680px; 
+    }
+}
 
+@media screen and (min-width: 1366px) and (max-width: 1599px) {
+    .initial-image {
+        margin-top: 520px; 
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1365px) {
+    .initial-image {
+        margin-top: 400px; 
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .initial-image {
+        margin-top: 360px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .initial-image {
+        margin-top: 220px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .initial-image {
+        margin-top: 30px; 
+    }
+}
     </style>
 </head>
 <body>
@@ -393,7 +428,7 @@ function fill_testes(e){
 
         window.open('https://docs.google.com/spreadsheets/d/16Aeqt9ku1Pj-OuBH0fI0FP67CmCzxJty3wxeXSCQQvE/edit#gid=1943370489')
     }
-    // SE VALIDAÇÃO NÃO É VERIFICADA:
+  
     else{
         alert('Preencha todos os campos!')
     };
@@ -407,7 +442,7 @@ function fill_retif(e){
         if($(this).val() == ""){isValid = false};
     })
 
-    // SE VALIDAÇÃO É VERIFICADA:
+    
     if(isValid == true){
         document.getElementById('enviar_retificação').style.display = 'none';
         document.getElementById('enviar_retificação_dis').style.display = 'flex';
@@ -473,7 +508,7 @@ function preencher_data(id){
     				  alert('Houve um erro! Tente novamente!');
     			  });
          }, 600);
-        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/f845-om-departamento-de-aplicacao'}, 4000)};
+        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/h15-ordem-militar-requerimentos'}, 4000)};
     		});
     	});
     }(jQuery));
