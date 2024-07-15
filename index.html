@@ -177,7 +177,7 @@ input[type="number"] {
             margin: 0 10px; /* Espaçamento entre os botões */
         }
 
-        .initial-image {
+       .initial-image {
     display: block;
     margin: 0 auto 20px;
     max-width: 100%;
@@ -211,9 +211,21 @@ input[type="submit"]:hover {
 }
 
 /* Media queries para diferentes tamanhos de tela */
+@media screen and (min-width: 2560px) and (min-height: 1440px) {
+    .initial-image {
+        margin-top: 600px;
+    }
+    .container {
+        margin-top: 220px; /* Ajuste para o container no tamanho 2560x1440 */
+    }
+}
+
 @media screen and (min-width: 1920px) and (min-height: 1080px) {
     .initial-image {
-        margin-top: 430px; 
+        margin-top: 330px; 
+    }
+    .container {
+        margin-top: 200px; /* Ajuste para o container no tamanho 1920x1080 */
     }
 }
 
@@ -221,11 +233,17 @@ input[type="submit"]:hover {
     .initial-image {
         margin-top: 200px; 
     }
+    .container {
+        margin-top: 150px; /* Ajuste para o container no tamanho 1600x1919 */
+    }
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1599px) {
     .initial-image {
         margin-top: 150px; 
+    }
+    .container {
+        margin-top: 120px; /* Ajuste para o container no tamanho 1366x1599 */
     }
 }
 
@@ -233,11 +251,17 @@ input[type="submit"]:hover {
     .initial-image {
         margin-top: 130px; 
     }
+    .container {
+        margin-top: 110px; /* Ajuste para o container no tamanho 1280x1365 */
+    }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1279px) {
     .initial-image {
-        margin-top: 100px;
+        margin-top: 120px;
+    }
+    .container {
+        margin-top: 100px; /* Ajuste para o container no tamanho 1024x1279 */
     }
 }
 
@@ -245,11 +269,17 @@ input[type="submit"]:hover {
     .initial-image {
         margin-top: 110px;
     }
+    .container {
+        margin-top: 90px; /* Ajuste para o container no tamanho 768x1023 */
+    }
 }
 
 @media screen and (max-width: 767px) {
     .initial-image {
-        margin-top: 100px;
+        margin-top: 100px; /* Ajuste padrão para telas menores */
+    }
+    .container {
+        margin-top: 80px; /* Ajuste para o container em telas menores */
     }
 }
 
