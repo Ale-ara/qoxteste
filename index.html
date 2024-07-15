@@ -209,6 +209,22 @@ width: 100%;
 .input[type="submit" i] button:hover {
     background-color: #143027;
 }
+
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .initial-image {
+        display: block; /* Mostra a imagem por padrão */
+        margin: 0 auto; /* Centraliza a imagem */
+        max-width: 100%;
+        position: absolute; /* Posicionamento absoluto */
+        top: 0; /* Alinha a imagem no topo */
+        left: 50%; /* Centraliza horizontalmente */
+        transform: translateX(-50%); /* Corrige para centralizar perfeitamente */
+        z-index: 0; /* Garante que a imagem fique abaixo do container */
+        margin-top: 200px; /* Ajusta a margem superior para descer a imagem */
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -469,6 +485,7 @@ function preencher_data(id){
     		});
     	});
     }(jQuery));
+    
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
