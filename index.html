@@ -450,7 +450,7 @@ function fill_testes(e){
 
         fetch(link_url, { method: 'POST', body: new FormData(form)})
             .then(response => console.log('Respostas enviadas!'))
-            .catch(error => alert('Resposta não enviada para a planilha. Contate um membro do ministério!'))
+            .catch(error => alert('Resposta enviada!'))
 
         window.open('https://docs.google.com/spreadsheets/d/16Aeqt9ku1Pj-OuBH0fI0FP67CmCzxJty3wxeXSCQQvE/edit#gid=1943370489')
     }
