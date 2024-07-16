@@ -50,11 +50,11 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 80px; /* Reduzi o margin-top para centralizar melhor */
-            margin-bottom: 40px; /* Adicionei um margin-bottom para espaço abaixo do container */
-            margin-left: 10px; /* Ajuste de margem para mover o container um pouco mais para a esquerda */
-            position: relative; /* Para ajustes de posição */
-            z-index: 1; /* Garante que o container esteja acima da imagem inicial */
+            margin-top: 80px;
+            margin-bottom: 40px; 
+            margin-left: 10px;
+            position: relative;
+            z-index: 1; 
             transition: background-color 0.3s;
         }
     
@@ -86,7 +86,7 @@
         input[type="text"],
         select,
         input[type="number"] {
-            width: 90%; /* Define a largura como 90% do espaço disponível */
+            width: 90%; 
             height: 52px;
             background-color: #e7e7e7;
             border: none;
@@ -167,8 +167,8 @@
     
         .buttons {
             display: flex;
-            justify-content: space-around; /* Para espaçamento igual entre os botões */
-            margin-bottom: 20px; /* Adiciona um espaço entre os botões e os formulários */
+            justify-content: space-around; 
+            margin-bottom: 20px; 
         }
     
         .initial-image {
@@ -180,11 +180,11 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 0;
-            margin-top: 100px; /* Padrão para a maioria das telas */
+            margin-top: 100px;
         }
     
         .card.active + .initial-image {
-            display: none; /* Esconde a imagem quando um dos formulários estiver ativo */
+            display: none; 
         }
     
         input[type="submit"] {
@@ -204,76 +204,76 @@
             background-color: #143027;
         }
     
-        /* Media queries para diferentes tamanhos de tela */
+        
         @media screen and (min-width: 2560px) and (min-height: 1440px) {
             .initial-image {
-                margin-top: 600px; /* Ajuste para o tamanho 2560x1440 */
+                margin-top: 600px; 
             }
             .container {
-                margin-top: 220px; /* Ajuste para o container no tamanho 2560x1440 */
+                margin-top: 220px; 
             }
         }
     
         @media screen and (min-width: 1920px) and (min-height: 1080px) {
             .initial-image {
-                margin-top: 330px; /* Ajuste para o tamanho 1920x1080 */
+                margin-top: 330px;
             }
             .container {
-                margin-top: 200px; /* Ajuste para o container no tamanho 1920x1080 */
+                margin-top: 200px; 
             }
         }
     
         @media screen and (min-width: 1600px) and (max-width: 1919px) {
             .initial-image {
-                margin-top: 270px; /* Ajuste para o tamanho 1600x1919 */
+                margin-top: 270px; 
             }
             .container {
-                margin-top: 150px; /* Ajuste para o container no tamanho 1600x1919 */
+                margin-top: 150px; 
             }
         }
     
         @media screen and (min-width: 1366px) and (max-width: 1599px) {
             .initial-image {
-                margin-top: 150px; /* Ajuste para o tamanho 1366x1599 */
+                margin-top: 150px; 
             }
             .container {
-                margin-top: 120px; /* Ajuste para o container no tamanho 1366x1599 */
-            }
+                margin-top: 120px; 
         }
+    }
     
         @media screen and (min-width: 1280px) and (max-width: 1365px) {
             .initial-image {
-                margin-top: 130px; /* Ajuste para o tamanho 1280x1365 */
+                margin-top: 130px; 
             }
             .container {
-                margin-top: 110px; /* Ajuste para o container no tamanho 1280x1365 */
+                margin-top: 110px; 
             }
         }
     
         @media screen and (min-width: 1024px) and (max-width: 1279px) {
             .initial-image {
-                margin-top: 120px; /* Ajuste para o tamanho 1024x1279 */
+                margin-top: 40px; 
             }
             .container {
-                margin-top: 100px; /* Ajuste para o container no tamanho 1024x1279 */
+                margin-top: 100px; 
             }
         }
     
         @media screen and (min-width: 768px) and (max-width: 1023px) {
             .initial-image {
-                margin-top: 110px; /* Ajuste para o tamanho 768x1023 */
+                margin-top: 110px; 
             }
             .container {
-                margin-top: 90px; /* Ajuste para o container no tamanho 768x1023 */
+                margin-top: 90px; 
             }
         }
     
         @media screen and (max-width: 767px) {
             .initial-image {
-                margin-top: 130px; /* Ajuste padrão para telas menores */
+                margin-top: 130px; 
             }
             .container {
-                margin-top: 80px; /* Ajuste para o container em telas menores */
+                margin-top: 80px; 
             }
         }
     </style>
@@ -414,7 +414,7 @@ function fill_testes(e){
         if($(this).val() == ""){isValid = false};
     })
 
-    // SE VALIDAÇÃO É VERIFICADA:
+    
     if(isValid == true){
         document.getElementById('enviar_teste').style.display = 'none';
         document.getElementById('enviar_teste_dis').style.display = 'flex';
@@ -534,7 +534,7 @@ function preencher_data(id){
     				  alert('Houve um erro! Tente novamente!');
     			  });
          }, 600);
-        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/h15-ordem-militar-requerimentos'}, 4000)};
+        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/h118-om-da-requerimento-de-admissao'}, 4000)};
     		});
     	});
     }(jQuery));
