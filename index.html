@@ -383,223 +383,178 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
- <script>
-        function toggleForm(formId) {
-            const forms = document.querySelectorAll('.card');
-            forms.forEach(form => {
-                if (form.id === formId) {
-                    form.classList.add('active');
-                } else {
-                    form.classList.remove('active');
-                }
-            });
-        }
-    </script>
-
-
-
 <script>
-$(document).ready(function(){
-    $('#select_options').on('change',function(){
-        $(".card").hide();
-        $("#" + $(this).val()).show();
-    }).change();
-})
-
-function fill_testes(e){
-    e.preventDefault();
-    var isValid = true;
-    if($("#necessidade_novos").val() == null){isValid = false};
-    $("#postagem_testes_forms").find("input").each(function(){
-        if($(this).val() == ""){isValid = false};
+    $(document).ready(function(){
+        $('#select_options').on('change',function(){
+            $(".card").hide();
+            $("#" + $(this).val()).show();
+        }).change();
     })
-
     
-    if(isValid == true){
-        document.getElementById('enviar_teste').style.display = 'none';
-        document.getElementById('enviar_teste_dis').style.display = 'flex';
-        preencher_data('horario_envio_test');
-
-        var horario = new Date();
-        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
-        var data_hoje = horario.getDate();
-            if(data_hoje<10){data_hoje = '0' + data_hoje};
-        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
-        var mes_hoje = meses[horario.getMonth()];
-        var ano_hoje = horario.getFullYear();
-
-        if(parseInt($("#necessidade_novos").val()) == 5){$("#nickname_aprov").val('Não houveram aprovados')}else{
-            var entradas = document.getElementById('nickname_aprov').value.split('/');
-            var lista = '';
-                entradas.forEach(function(nickname){
-                    nickname = nickname.replace(' ','');
-                    lista = lista + "\n • [b]" + nickname + '[/b] - ' + data_hoje + ' ' + mes_hoje + ' ' + ano_hoje;
-                });
-            if(document.getElementById('necessidade_novos').value == 1){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum.[/color]"}
-            if(document.getElementById('necessidade_novos').value == 2){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no emblema.[/color]"}
-            if(document.getElementById('necessidade_novos').value == 3){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum e no emblema.[/color]"}
-            if(document.getElementById('necessidade_novos').value == 4){var necessidade = "[color=green][b]✓[/b] Policiais já adicionados no emblema e subfórum.[/color]"}
-            var texto = 
-                "[font=Lexend Deca][size=15][color=#263b32][b]ENTRADA DE MEMBROS[/b][/color][/size]\n" + lista + "\n\n" + necessidade + "[/font]";
-                        
-            document.getElementById('fa-generated-message').value = texto;
+    function fill_testes(e){
+        e.preventDefault();
+        var isValid = true;
+        if($("#necessidade_novos").val() == null){isValid = false};
+        $("#postagem_testes_forms").find("input").each(function(){
+            if($(this).val() == ""){isValid = false};
+        })
+    
+        // SE VALIDAÇÃO É VERIFICADA:
+        if(isValid == true){
+            document.getElementById('enviar_teste').style.display = 'none';
+            document.getElementById('enviar_teste_dis').style.display = 'flex';
+            preencher_data('horario_envio_test');
+    
+            var horario = new Date();
+            horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+            var data_hoje = horario.getDate();
+                if(data_hoje<10){data_hoje = '0' + data_hoje};
+            const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+            var mes_hoje = meses[horario.getMonth()];
+            var ano_hoje = horario.getFullYear();
+    
+            if(parseInt($("#necessidade_novos").val()) == 5){$("#nickname_aprov").val('Não houveram aprovados')}else{
+                var entradas = document.getElementById('nickname_aprov').value.split('/');
+                var lista = '';
+                    entradas.forEach(function(nickname){
+                        nickname = nickname.replace(' ','');
+                        lista = lista + "\n • [b]" + nickname + '[/b] - ' + data_hoje + ' ' + mes_hoje + ' ' + ano_hoje;
+                    });
+                if(document.getElementById('necessidade_novos').value == 1){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 2){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no emblema.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 3){var necessidade = "[color=red][b]✕[/b] Policiais precisam ser adicionados no subfórum e no emblema.[/color]"}
+                if(document.getElementById('necessidade_novos').value == 4){var necessidade = "[color=green][b]✓[/b] Policiais já adicionados no emblema e subfórum.[/color]"}
+                var texto = 
+                    "[font=Lexend Deca][size=15][color=#263b32][b]ENTRADA DE MEMBROS[/b][/color][/size]\n" + lista + "\n\n" + necessidade + "[/font]";
+                            
+                document.getElementById('fa-generated-message').value = texto;
+            };
+    
+            var form = document.getElementById("postagem_testes_forms");
+            var link_url = 'https://script.google.com/macros/s/AKfycbyNRhzBQFkmYMw_tNZlkrgrgKdYqeoXPj30X2Oo8wAlxDgsm2ZM9TdFUJdMPy-AMmvF/exec';
+    
+            fetch(link_url, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Respostas enviadas!'))
+                .catch(error => alert('Resposta não enviada para a planilha. Contate um membro do ministério!'))
+    
+            window.open('https://docs.google.com/spreadsheets/d/16Aeqt9ku1Pj-OuBH0fI0FP67CmCzxJty3wxeXSCQQvE/edit#gid=1943370489')
+        }
+        // SE VALIDAÇÃO NÃO É VERIFICADA:
+        else{
+            alert('Preencha todos os campos!')
         };
-
-        var form = document.getElementById("postagem_testes_forms");
-        var link_url = 'https://script.google.com/macros/s/AKfycbyNRhzBQFkmYMw_tNZlkrgrgKdYqeoXPj30X2Oo8wAlxDgsm2ZM9TdFUJdMPy-AMmvF/exec';
-
-        fetch(link_url, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Respostas enviadas!'))
-            .catch(error => alert('Resposta enviada!'))
-
-        window.open('https://docs.google.com/spreadsheets/d/16Aeqt9ku1Pj-OuBH0fI0FP67CmCzxJty3wxeXSCQQvE/edit#gid=1943370489')
+        return isValid;
     }
-  
-    else{
-        alert('Preencha todos os campos!')
-    };
-    return isValid;
-}
-
-function fill_retif(e){
-    e.preventDefault();
-    var isValid = true;
-    $("#pedido_retif").find("input").each(function(){
-        if($(this).val() == ""){isValid = false};
-    })
-
     
-    if(isValid == true){
-        document.getElementById('enviar_retificação').style.display = 'none';
-        document.getElementById('enviar_retificação_dis').style.display = 'flex';
-        preencher_data('horario_envio_ret');
-        
-        var texto = 
-            "[font=Trebuchet MS][b]RETIFICAÇÃO DE ERROS DE POSTAGEM:[/b] \n\n [b]Nickname:[/b] " + document.getElementById('nickname_ret').value + "\n" +
-            "[b]Cargo:[/b] Aplicador \n" + "[b]Linha na Planilha:[/b] " + document.getElementById('linha_plan').value + "\n" +
-            "[b]Erro:[/b] " + document.getElementById('erro_retif').value + "\n" + "[b]Correção:[/b] " + document.getElementById('correção_retif').value + "[/font]"                 
-        document.getElementById('fa-generated-message').value = texto;
-    }
-    // SE VALIDAÇÃO NÃO É VERIFICADA:
-    else{
-        alert('Preencha todos os campos!')
-    };
-    return isValid;
-}
-
-function preencher_data(id){
-    var horario = new Date();
-        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
-        var data_hoje = horario.getDate();
-            if(data_hoje<10){data_hoje = '0' + data_hoje};
-        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
-        var mes_hoje = meses[horario.getMonth()];
-        var ano_hoje = horario.getFullYear();
-        var horario_hoje = horario.getHours();
-            if(horario_hoje<10){horario_hoje = '0' + horario_hoje};
-        var minutos_hoje = horario.getMinutes();
-            if(minutos_hoje<10){minutos_hoje = '0' + minutos_hoje};
-        var segundos_hoje = horario.getSeconds();
-            if(segundos_hoje<10){segundos_hoje = '0' + segundos_hoje};
-    document.getElementById(id).value = data_hoje + ' ' + mes_hoje + ' ' + ano_hoje + ' ' + horario_hoje + ':' + minutos_hoje + ':' + segundos_hoje;
-}
-
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://forumeiros.github.io/assets/src/form-generator/form-replace.js" type="text/javascript"></script>
-
-<script type="text/javascript">  // POSTAGEM NO FÓRUM  
-    (function ($) {
-    	'use strict';
-    	$(window).on('load', function () {
-            preencher_data('inicio_aplicação');
-    		$('form').on('submit', function (event) {
-         event.preventDefault();
-         $(this).find('button[type="submit"]').text('Postando...');
-         if($('#fa-generated-message').val() != ''){
-             if($("#select_options").val() == 'postagem_testes'){var forum_id = '37638'};
-             if($("#select_options").val() == 'retificação_erros'){var forum_id = '27051'};
-         setTimeout(function () {
-    		  	$.post('/post', {
-    			  	t: forum_id,
-    				  message: $('#fa-generated-message').val().trim(),
-    				  mode: 'reply',
-    				  tid: $('[name="tid"]:first').val(),
-    				  post: 1,
-    		  	}).done(function () {
-    				  console.log('Postado com sucesso. Você será redirecionado para o tópico...');
-                      location.href = 'http://' + location.host + '/t' + forum_id + '-?view=newest';
-    			  }).fail(function () {
-    				  alert('Houve um erro! Tente novamente!');
-    			  });
-         }, 600);
-        }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/h118-om-da-requerimento-de-admissao'}, 4000)};
-    		});
-    	});
-    }(jQuery));
+    function fill_retif(e){
+        e.preventDefault();
+        var isValid = true;
+        $("#pedido_retif").find("input").each(function(){
+            if($(this).val() == ""){isValid = false};
+        })
     
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-<script> // MÁSCARA DE DATA E HORA
-$(document).ready(function(){
-    $.jMaskGlobals = {translation: {
-        'D': {pattern: /[0-3]/},
-        'H': {pattern: /[0-2]/},
-        'M': {pattern: /[0-5]/},
-        'Y': {pattern: /[0-9]/},
-        'A': {pattern: /[A-Z]/},
-        'a': {pattern: /[a-z]/}
-    }}
-    $('.data_hour').mask('DY Aaa YYYY - HY:MY', {placeholder: 'Siga o modelo: 20 Fev 2021 - 20:20'});
-});
-</script>
-
-<script> // PREENCHIMENTO COM BASE NO LINK
-$(document).ready(function () {
-    atualizarURL ()
-});
-
-function atualizarURL(){
-    const urlParams = new URLSearchParams(window.location.search).forEach(function(x,y){
-        document.getElementById(y).value = x;
-        if(y == 'select_options'){
-            document.getElementById(x).style.display = 'block';
+        // SE VALIDAÇÃO É VERIFICADA:
+        if(isValid == true){
+            document.getElementById('enviar_retificação').style.display = 'none';
+            document.getElementById('enviar_retificação_dis').style.display = 'flex';
+            preencher_data('horario_envio_ret');
+            
+            var texto = 
+                "[font=Trebuchet MS][b]RETIFICAÇÃO DE ERROS DE POSTAGEM:[/b] \n\n [b]Nickname:[/b] " + document.getElementById('nickname_ret').value + "\n" +
+                "[b]Cargo:[/b] Aplicador \n" + "[b]Linha na Planilha:[/b] " + document.getElementById('linha_plan').value + "\n" +
+                "[b]Erro:[/b] " + document.getElementById('erro_retif').value + "\n" + "[b]Correção:[/b] " + document.getElementById('correção_retif').value + "[/font]"                 
+            document.getElementById('fa-generated-message').value = texto;
         }
-    });    
-}
-</script>
-<script>
-   // Função para obter parâmetros da URL por nome
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-// Preencher campos de input com parâmetros da URL
-document.addEventListener('DOMContentLoaded', function() {
-    var nicknameAplicadorInput = document.getElementById('nickname_aplicador');
-    var nicknameRetInput = document.getElementById('nickname_ret');
-
-    var nicknameAplicador = getParameterByName('nickname_aplicador');
-    var nicknameRet = getParameterByName('nickname_ret');
-
-    if (nicknameAplicador) {
-        nicknameAplicadorInput.value = nicknameAplicador;
+        // SE VALIDAÇÃO NÃO É VERIFICADA:
+        else{
+            alert('Preencha todos os campos!')
+        };
+        return isValid;
     }
-
-    if (nicknameRet) {
-        nicknameRetInput.value = nicknameRet;
+    
+    function preencher_data(id){
+        var horario = new Date();
+            horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+            var data_hoje = horario.getDate();
+                if(data_hoje<10){data_hoje = '0' + data_hoje};
+            const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+            var mes_hoje = meses[horario.getMonth()];
+            var ano_hoje = horario.getFullYear();
+            var horario_hoje = horario.getHours();
+                if(horario_hoje<10){horario_hoje = '0' + horario_hoje};
+            var minutos_hoje = horario.getMinutes();
+                if(minutos_hoje<10){minutos_hoje = '0' + minutos_hoje};
+            var segundos_hoje = horario.getSeconds();
+                if(segundos_hoje<10){segundos_hoje = '0' + segundos_hoje};
+        document.getElementById(id).value = data_hoje + ' ' + mes_hoje + ' ' + ano_hoje + ' ' + horario_hoje + ':' + minutos_hoje + ':' + segundos_hoje;
     }
-});
-</script>
-
-</body>
+    
+    </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://forumeiros.github.io/assets/src/form-generator/form-replace.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">  // POSTAGEM NO FÓRUM  
+        (function ($) {
+            'use strict';
+            $(window).on('load', function () {
+                preencher_data('inicio_aplicação');
+                $('form').on('submit', function (event) {
+             event.preventDefault();
+             $(this).find('button[type="submit"]').text('Postando...');
+             if($('#fa-generated-message').val() != ''){
+                 if($("#select_options").val() == 'postagem_testes'){var forum_id = '37638'};
+                 if($("#select_options").val() == 'retificação_erros'){var forum_id = '27051'};
+             setTimeout(function () {
+                      $.post('/post', {
+                          t: forum_id,
+                          message: $('#fa-generated-message').val().trim(),
+                          mode: 'reply',
+                          tid: $('[name="tid"]:first').val(),
+                          post: 1,
+                      }).done(function () {
+                          console.log('Postado com sucesso. Você será redirecionado para o tópico...');
+                          location.href = 'http://' + location.host + '/t' + forum_id + '-?view=newest';
+                      }).fail(function () {
+                          alert('Houve um erro! Tente novamente!');
+                      });
+             }, 600);
+            }else{setTimeout(() => {location.href = 'https://www.policiarcc.com/h19-postagem-de-testes-ordem-militar'}, 4000)};
+                });
+            });
+        }(jQuery));
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    
+    <script> // MÁSCARA DE DATA E HORA
+    $(document).ready(function(){
+        $.jMaskGlobals = {translation: {
+            'D': {pattern: /[0-3]/},
+            'H': {pattern: /[0-2]/},
+            'M': {pattern: /[0-5]/},
+            'Y': {pattern: /[0-9]/},
+            'A': {pattern: /[A-Z]/},
+            'a': {pattern: /[a-z]/}
+        }}
+        $('.data_hour').mask('DY Aaa YYYY - HY:MY', {placeholder: 'Siga o modelo: 20 Fev 2021 - 20:20'});
+    });
+    </script>
+    
+    <script> // PREENCHIMENTO COM BASE NO LINK
+    $(document).ready(function () {
+        atualizarURL ()
+    });
+    
+    function atualizarURL(){
+        const urlParams = new URLSearchParams(window.location.search).forEach(function(x,y){
+            document.getElementById(y).value = x;
+            if(y == 'select_options'){
+                document.getElementById(x).style.display = 'block';
+            }
+        });    
+    }
+    </script>
+    </body>
+    </html>
